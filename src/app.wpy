@@ -1,0 +1,68 @@
+<style lang="less">
+@import './style/weui.less';
+
+page{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/list'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: '图片文字识别',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#999999',
+      selectedColor: '#1AAD19',
+      backgroundColor: '#EFEFF4',
+      list: [
+        {
+          pagePath: 'pages/index',
+          text: '文件',
+          iconPath: 'images/tab_image_default.png',
+          selectedIconPath: 'images/tab_image_selected.png'
+        },
+        {
+          pagePath: 'pages/list',
+          text: '列表',
+          iconPath: 'images/tab_list_default.png',
+          selectedIconPath: 'images/tab_list_selected.png'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  async onLaunch() {
+    // 登录code
+    let code = await wepy.login()
+    // 用户信息
+    this.globalData.userInfo = await wepy.getUserInfo()
+
+    console.log(code)
+    console.log(this.globalData.userInfo)
+  }
+
+  constructor() {
+    super()
+    this.use('promisify')
+    this.use('requestfix')
+  }
+}
+</script>
