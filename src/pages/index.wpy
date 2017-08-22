@@ -1,4 +1,10 @@
 <style lang="less">
+    .index_uploader_files {
+        display: flex; 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: space-around;
+    }
 </style>
 
 <template>
@@ -13,15 +19,16 @@
                           <view class="weui-uploader__info">{{files.length}}/9</view>
                       </view>
                       <view class="weui-uploader__bd">
-                          <view class="weui-uploader__files" id="uploaderFiles">
+                          <view class="index_uploader_files" >
                               <block wx:for="{{files}}" wx:key="*this">
-                                  <view class="weui-uploader__file" @tap="previewImage" @longpress="removeImage" id="{{item}}">
+                                  <view style="margin-bottom: 9px;" @tap="previewImage" @longpress="removeImage" id="{{item}}">
                                       <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                   </view>
                               </block>
-                          </view>
-                          <view class="weui-uploader__input-box" hidden="{{files.length >=9}}">
-                              <view class="weui-uploader__input" @tap="chooseImage"></view>
+
+                              <view class="weui-uploader__input-box" style="margin-right: 0px;" hidden="{{files.length >=9}}">
+                                <view class="weui-uploader__input" @tap="chooseImage"></view>
+                              </view>
                           </view>
                       </view>
                   </view>
