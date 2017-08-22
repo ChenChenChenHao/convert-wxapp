@@ -31,13 +31,11 @@ export default class extends wepy.app {
       list: [
         {
           pagePath: 'pages/index',
-          text: '文件',
           iconPath: 'images/tab_image_default.png',
           selectedIconPath: 'images/tab_image_selected.png'
         },
         {
           pagePath: 'pages/list',
-          text: '列表',
           iconPath: 'images/tab_list_default.png',
           selectedIconPath: 'images/tab_list_selected.png'
         }
