@@ -21,7 +21,7 @@
                       <view class="weui-uploader__bd">
                           <view class="index_uploader_files" >
                               <block wx:for="{{files}}" wx:key="*this">
-                                  <view style="margin-bottom: 9px;" @tap="previewImage" @longpress="removeImage" id="{{item}}">
+                                  <view style="margin-bottom: 9px;" @tap="operatorImage"  id="{{item}}">
                                       <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                   </view>
                               </block>
@@ -66,17 +66,29 @@
         this.files = this.files.concat(res.tempFilePaths)
         this.$apply()
       },
-      // 单机预览图片
-      previewImage (e) {
-        wepy.previewImage({
-          current: e.currentTarget.id,
-          urls: this.data.files
+      async operatorImage (e) {
+        let res = await wepy.showActionSheet({
+          itemList: ['预览', '删除']
         })
-      },
-      // 长按删除图片
-      removeImage (e) {
-        this.files.splice(e.currentTarget.id, 1)
+        if (res.tapIndex === 0) {
+          this.previewImage(e)
+        } else if (res.tapIndex === 1) {
+          this.removeImage(e)
+        }
       }
+    }
+
+    // 预览图片
+    previewImage(e) {
+      wepy.previewImage({
+        current: e.currentTarget.id,
+        urls: this.data.files
+      })
+    }
+    // 删除图片
+    removeImage(e) {
+      this.files.splice(e.currentTarget.id, 1)
+      this.$apply()
     }
   }
 </script>
