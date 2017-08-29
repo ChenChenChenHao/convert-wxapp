@@ -43,10 +43,17 @@
 
 <script>
   import wepy from 'wepy'
+  import LoginMixin from '../mixins/LoginMixin'
 
   export default class Index extends wepy.page {
     data = {
       files: []
+    }
+
+    mixins = [LoginMixin]
+
+    async onLoad() {
+      await this.login()
     }
 
     methods = {

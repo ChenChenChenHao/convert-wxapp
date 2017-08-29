@@ -49,16 +49,6 @@ export default class extends wepy.app {
     userInfo: null
   }
 
-  async onLaunch() {
-    // 登录code
-    let code = await wepy.login()
-    // 用户信息
-    this.globalData.userInfo = await wepy.getUserInfo()
-
-    console.log(code)
-    console.log(this.globalData.userInfo)
-  }
-
   constructor() {
     super()
     this.use('promisify')
