@@ -1,5 +1,5 @@
 // 'development' or 'production'
-const env = 'production'
+const env = 'development'
 
 // development and production host
 const hosts = {

@@ -14,12 +14,12 @@ export default class LoginMixin extends wepy.mixin {
 
         try {
             token = await wepy.request({
-                url: api.login.url,
+                url: api.user.login.url,
                 method: api.user.login.method,
                 dataType: 'application/json',
                 data: {
                     code: loginData.code,
-                    encryptedData: userinfo.encryptedData,
+                    encryptedData: userInfo.encryptedData,
                     iv: userInfo.iv,
                     rawData: userInfo.rawData
                 }
